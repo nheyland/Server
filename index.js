@@ -1,3 +1,4 @@
+const port = process.env.PORT || 3000;
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -24,5 +25,5 @@ app.use('/b', b)
 
 
 
-app.listen(3000, () => console.log('Server Running....'))
+app.listen(port, () => console.log('Server Running....'))
 
