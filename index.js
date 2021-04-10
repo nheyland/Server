@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
-const secret = require('./protected')
+const secret = require('./routes/protected')
 
 dotenv.config()
 
@@ -12,8 +12,9 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
 // Middleware
 app.use(express.json())
 
+
+app.use('/login', authRoute)
 app.use('/protected', secret)
-app.use('/api/user', authRoute)
 
 
 app.get('/', (req, res) => {
