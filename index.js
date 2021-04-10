@@ -2,8 +2,12 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const authRoute = require('./routes/auth')
-const secret = require('./routes/protected')
+const register = require('./routes/secure/register')
+const login = require('./routes/secure/login')
+
+const a = require('./routes/content/a')
+const b = require('./routes/content/b')
+
 
 dotenv.config()
 
@@ -12,17 +16,13 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
 // Middleware
 app.use(express.json())
 
-
-app.use('/login', authRoute)
-app.use('/protected', secret)
-
-
-app.get('/', (req, res) => {
-    res.send('http://localhost:3000/api/user/register')
-})
+// Routes
+app.use('/register', register)
+app.use('/login', login)
+app.use('/a', a)
+app.use('/b', b)
 
 
 
-// http://localhost/3000/api/user/register
 app.listen(3000, () => console.log('Server Running....'))
 

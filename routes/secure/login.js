@@ -1,10 +1,10 @@
-const User = require('../models/user')
+const User = require('../../models/user')
 const router = require('express').Router();
-const { loginValidation } = require('../tools/validations/login')
+const { loginValidation } = require('../../tools/validations/login')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-router.post('/login', async (req, res) => {
+router.post('', async (req, res) => {
 
     // Sanitize PostData
     loginValidation(req).error && res.status(400).send(loginValidation(req).error.message)
@@ -16,16 +16,18 @@ router.post('/login', async (req, res) => {
     const validPass = await bcrypt.compare(req.body.password, user.password)
     !validPass && res.status(400).send('Incorrect! Pass')
 
-
-    // Assign Token
-    const token = jwt.sign({
+    //Inject Data into token
+    const data = {
         id: user._id,
         auth: true,
-    }, process.env.TOKEN)
-    console.log(token)
+        name: user.name,
+        email: user.email
+    }
+    // Assign Token
+    const token = jwt.sign(data, process.env.TOKEN)
+
     res.header('auth', token).send('Logged In')
+
 })
-
-
 
 module.exports = router;

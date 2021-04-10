@@ -1,9 +1,10 @@
-const User = require('../models/user')
+const User = require('../../models/user')
 const router = require('express').Router();
-const { registerValidation } = require('../tools/validations/register')
+const { registerValidation } = require('../../tools/validations/register')
 const bcrypt = require('bcryptjs')
 
-router.post('/register', async (req, res) => {
+
+router.post('', async (req, res) => {
     // Validation
     registerValidation(req).error && res.status(400).send(registerValidation(req).error.message)
 
@@ -31,5 +32,4 @@ router.post('/register', async (req, res) => {
         res.status(400).send(error);
     }
 });
-
 module.exports = router;
