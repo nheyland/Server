@@ -11,6 +11,7 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopo
 
 // Middleware
 app.use(express.json())
+
 app.use('/protected', secret)
 app.use('/api/user', authRoute)
 
