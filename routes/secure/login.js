@@ -4,6 +4,11 @@ const { loginValidation } = require('../../tools/validations/login')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+router.get('', (req, res) => {
+    res.send('Login is Post')
+})
+
+
 router.post('', async (req, res) => {
 
     // Sanitize PostData
