@@ -14,7 +14,6 @@ const b = require('./routes/content/b')
 dotenv.config()
 
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true })
-
 // Middleware
 app.use(express.json())
 
@@ -22,6 +21,7 @@ app.use(express.json())
 app.use('/register', register)
 app.use('/login', login)
 app.get('/', (req, res) => {
+    console.log(mongoose.connection.readyState);
     res.send('Hello Wolrd!!!!!!!!')
 })
 app.use('/a', a)
