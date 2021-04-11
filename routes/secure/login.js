@@ -10,9 +10,9 @@ router.get("", (req, res) => {
 
 router.post("", async (req, res) => {
   // Sanitize PostData
+
   loginValidation(req).error &&
-    // res.status(400).send(loginValidation(req).error.message);
-    res.status(400).send(req.body);
+    res.status(400).send(loginValidation(req).error.message);
 
   // Check if user exists
   const user = await User.findOne({ email: req.body.email });
