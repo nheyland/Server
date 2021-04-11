@@ -22,7 +22,7 @@ app.use(express.json())
 app.use('/register', register)
 app.use('/login', login)
 app.get('/', (req, res) => {
-    res.send('Hello Wolrd')
+    res.send('Hello Wolrd!!!!!!!!')
 })
 app.use('/a', a)
 app.use('/b', b)
